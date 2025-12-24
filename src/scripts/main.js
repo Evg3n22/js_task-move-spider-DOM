@@ -3,11 +3,12 @@
 const wall = document.querySelector('.wall');
 const spider = document.querySelector('.spider');
 
-const leftBorder = (window.innerWidth - wall.clientWidth) / 2;
-const topBorder = (window.innerHeight - wall.clientHeight) / 2;
-
 document.addEventListener('click', (e) => {
   // write code here
+  const leftBorder =
+    (window.innerWidth - wall.getBoundingClientRect().width) / 2;
+  const topBorder =
+    (window.innerHeight - wall.getBoundingClientRect().height) / 2;
 
   spider.style.left = e.clientX - leftBorder - spider.clientWidth / 2 + 'px';
   spider.style.top = e.clientY - topBorder - spider.clientHeight / 2 + 'px';
@@ -23,11 +24,11 @@ document.addEventListener('click', (e) => {
     spider.style.top = 0;
   }
 
-  if (leftPos + spider.clientWidth / 2 > wall.clientWidth) {
+  if (leftPos + spider.clientWidth > wall.clientWidth) {
     spider.style.left = wall.clientWidth - spider.clientWidth + 'px';
   }
 
-  if (topPos + spider.clientHeight / 2 > wall.clientHeight) {
+  if (topPos + spider.clientHeight > wall.clientHeight) {
     spider.style.top = wall.clientHeight - spider.clientHeight + 'px';
   }
 });

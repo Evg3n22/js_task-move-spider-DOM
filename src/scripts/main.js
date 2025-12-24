@@ -3,18 +3,16 @@
 const wall = document.querySelector('.wall');
 const spider = document.querySelector('.spider');
 
-document.addEventListener('click', (e) => {
-  // write code here
-  const leftBorder =
-    (window.innerWidth - wall.getBoundingClientRect().width) / 2;
-  const topBorder =
-    (window.innerHeight - wall.getBoundingClientRect().height) / 2;
+wall.addEventListener('click', (e) => {
+  const rect = wall.getBoundingClientRect();
+  const borderLeft = wall.clientLeft;
+  const borderTop = wall.clientTop;
 
-  spider.style.left = e.clientX - leftBorder - spider.clientWidth / 2 + 'px';
-  spider.style.top = e.clientY - topBorder - spider.clientHeight / 2 + 'px';
+  const leftPos = e.clientX - rect.left - borderLeft - spider.clientWidth / 2;
+  const topPos = e.clientY - rect.top - borderTop - spider.clientHeight / 2;
 
-  const leftPos = e.clientX - leftBorder - spider.clientWidth / 2;
-  const topPos = e.clientY - topBorder - spider.clientHeight / 2;
+  spider.style.left = leftPos + 'px';
+  spider.style.top = topPos + 'px';
 
   if (leftPos < 0) {
     spider.style.left = 0;
